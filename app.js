@@ -9,6 +9,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 const port = 3001;
 
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+})
+
 app.post('/registration', (req, res) => {
   console.log(req.body);
  
