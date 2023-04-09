@@ -10,6 +10,18 @@ const makeid = (length = 5) => {
   return result;
 }
 
-export {
-  makeid
+const convertPlainArrayToNestedArray = (array = [], parent = '0') => {
+  const rootCategories = array.filter(obj => obj.parent === parent);
+  rootCategories.forEach(rootCate => {
+    const checkChildrenExist = convertPlainArrayToNestedArray(array, rootCate.id);
+    if (checkChildrenExist.length) {
+      rootCate['children'] = checkChildrenExist;
+    }
+  });
+  return rootCategories;
+}
+
+module.exports = {
+  makeid,
+  convertPlainArrayToNestedArray
 }
